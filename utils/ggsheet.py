@@ -2,6 +2,10 @@ from oauth2client.service_account import ServiceAccountCredentials
 import gspread
 
 
+def split_sheet_id_from_url(url):
+    return url.split('/')[-1]
+
+
 class GSheet():
 
     def __init__(self, keypath="key.json"):
@@ -14,10 +18,9 @@ class GSheet():
         client = gspread.authorize(creds)
         return client
     
-    def get_sheet(self, sheet_name):
-        return self.client.open(sheet_name)
+    def get_sheet(self, sheet_id):
+        return self.client.open(sheet_id)
 
-    def read_sheet_data(self, sheet_name):
-        sheet = self.get_sheet(sheet_name)
+    def read_sheet_data(self, sheet_id):
+        sheet = self.get_sheet(sheet_id)
         return sheet.sheet1.get_all_values()
-

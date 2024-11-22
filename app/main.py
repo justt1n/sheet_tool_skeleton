@@ -65,3 +65,6 @@ def process ():
         do_payload(payload)
 
 ### MAIN ###
+
+if __name__ == '__main__':
+    process()
